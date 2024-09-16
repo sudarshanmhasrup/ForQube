@@ -1,4 +1,41 @@
 package view.splashScreen
 
-class App {
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowPlacement
+import androidx.compose.ui.window.WindowState
+import kotlin.system.exitProcess
+
+@Composable
+fun initApp(modifier: Modifier = Modifier) {
+
+    var showSplashScreen by remember { mutableStateOf(true) }
+
+    if (showSplashScreen) {
+        splashScreen(
+            modifier = modifier,
+            onFinished = { showSplashScreen = false}
+        )
+    } else {
+        appWindow()
+    }
+}
+
+@Composable
+fun appWindow() {
+
+    val windowIcon = painterResource("assets/launcher-icon.png")
+
+    Window(
+        onCloseRequest = { exitProcess(0) },
+        alwaysOnTop = true,
+        state = WindowState(
+            placement = WindowPlacement.Maximized
+        ),
+        icon = windowIcon
+    ) {
+
+    }
 }

@@ -24,7 +24,10 @@ private val windowWidth = 680.dp
 private val windowHeight = 480.dp
 
 @Composable
-fun splashScreen(modifier: Modifier = Modifier) {
+fun splashScreen(
+    modifier: Modifier = Modifier,
+    onFinished: () -> Unit
+) {
 
     val windowIcon = painterResource("assets/launcher-icon.png")
 
@@ -39,6 +42,7 @@ fun splashScreen(modifier: Modifier = Modifier) {
             height = windowHeight,
             position = WindowPosition(Alignment.Center)
         ),
+        alwaysOnTop = true,
         icon = windowIcon
     ) {
         Surface(
@@ -61,24 +65,13 @@ fun splashScreen(modifier: Modifier = Modifier) {
                     )
                     splashScreenProgressBar(
                         modifier = Modifier.fillMaxWidth()
-                    )
+                    ) {
+                        onFinished()
+                    }
                 }
             }
         }
     }
-}
-
-@Composable
-fun backgroundImage(modifier: Modifier = Modifier) {
-
-    val backgroundImage = painterResource("assets/splash-screen-background.png")
-
-    Image(
-        painter = backgroundImage,
-        contentDescription = "Splash screen background image.",
-        modifier = modifier,
-        contentScale = ContentScale.Crop,
-    )
 }
 
 @Composable
@@ -109,7 +102,10 @@ fun splashScreenLogo(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun splashScreenProgressBar(modifier: Modifier = Modifier) {
+fun splashScreenProgressBar(
+    modifier: Modifier = Modifier,
+    onEnd: () -> Unit
+) {
 
     var currentProgress by remember { mutableStateOf(0.0f) }
 
@@ -122,10 +118,11 @@ fun splashScreenProgressBar(modifier: Modifier = Modifier) {
 
     LaunchedEffect(Unit) {
         coroutineScope {
-            for (i in 1 .. 10) {
-                currentProgress += 0.1f
-                delay(40)
+            for (i in 1 .. 100) {
+                currentProgress += 0.01f
+                delay(6)
             }
+            onEnd()
         }
     }
 }
