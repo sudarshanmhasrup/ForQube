@@ -1,0 +1,9 @@
+[versions]
+kotlinJvmVersion = "2.0.20"
+composeDesktopVersion = "1.7.0-alpha03"
+kotlinComposeVersion = "2.0.20"
+
+[plugins]
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinJvmVersion"}
+composeDesktop = { id = "org.jetbrains.compose", version.ref = "composeDesktopVersion"}
+kotlinCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinComposeVersion"}

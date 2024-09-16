@@ -1,0 +1,12 @@
+# Gradle
+.gradle
+
+# Kotlin
+.kotlin
+
+# Build
+build
+forqube/build
+
+# Idea
+.idea
