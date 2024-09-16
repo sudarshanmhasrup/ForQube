@@ -53,7 +53,7 @@ fun splashScreen(
             Box(
                 modifier = modifier
             ) {
-                background(
+                backgroundImage(
                     modifier = modifier
                 )
                 Column(
@@ -74,12 +74,17 @@ fun splashScreen(
     }
 }
 
+
 @Composable
-fun background(modifier: Modifier = Modifier) {
-    Surface(
+fun backgroundImage(modifier: Modifier = Modifier) {
+
+    val backgroundImage = painterResource("assets/splash-screen-background.png")
+
+    Image(
+        painter = backgroundImage,
+        contentDescription = "Splash screen background image.",
         modifier = modifier,
-        color = Color.Black,
-        content = {}
+        contentScale = ContentScale.Crop
     )
 }
 
