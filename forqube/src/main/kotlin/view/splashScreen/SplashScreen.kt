@@ -7,7 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,6 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 
 private val windowWidth = 680.dp
 private val windowHeight = 480.dp
@@ -47,7 +49,7 @@ fun splashScreen(modifier: Modifier = Modifier) {
             Box(
                 modifier = modifier
             ) {
-                backgroundImage(
+                background(
                     modifier = modifier
                 )
                 Column(
@@ -75,7 +77,16 @@ fun backgroundImage(modifier: Modifier = Modifier) {
         painter = backgroundImage,
         contentDescription = "Splash screen background image.",
         modifier = modifier,
-        contentScale = ContentScale.Crop
+        contentScale = ContentScale.Crop,
+    )
+}
+
+@Composable
+fun background(modifier: Modifier = Modifier) {
+    Surface(
+        modifier = modifier,
+        color = Color.Black,
+        content = {}
     )
 }
 
@@ -99,10 +110,22 @@ fun splashScreenLogo(modifier: Modifier = Modifier) {
 
 @Composable
 fun splashScreenProgressBar(modifier: Modifier = Modifier) {
+
+    var currentProgress by remember { mutableStateOf(0.0f) }
+
     LinearProgressIndicator(
-        progress = 1.0f,
+        progress = currentProgress,
         color = Color.White,
         backgroundColor = Color.Transparent,
         modifier = modifier.height(4.dp)
     )
+
+    LaunchedEffect(Unit) {
+        coroutineScope {
+            for (i in 1 .. 10) {
+                currentProgress += 0.1f
+                delay(40)
+            }
+        }
+    }
 }
