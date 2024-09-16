@@ -1,5 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-
 plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.kotlinCompose)
@@ -14,4 +12,5 @@ repositories {
 
 dependencies {
     implementation(compose.desktop.currentOs)
+    runtimeOnly("androidx.compose.ui:ui-tooling-preview:1.7.1")
 }
