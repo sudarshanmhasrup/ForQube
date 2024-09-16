@@ -1,9 +1,12 @@
 package view.splashScreen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -12,7 +15,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 
@@ -21,6 +23,8 @@ private val windowHeight = 480.dp
 
 @Composable
 fun splashScreen(modifier: Modifier = Modifier) {
+
+    val windowIcon = painterResource("assets/launcher-icon.png")
 
     // Splash screen window
     Window(
@@ -32,7 +36,8 @@ fun splashScreen(modifier: Modifier = Modifier) {
             width = windowWidth,
             height = windowHeight,
             position = WindowPosition(Alignment.Center)
-        )
+        ),
+        icon = windowIcon
     ) {
         Surface(
             modifier = modifier,
@@ -52,6 +57,9 @@ fun splashScreen(modifier: Modifier = Modifier) {
                         modifier = Modifier.weight(1f)
                             .fillMaxWidth()
                     )
+                    splashScreenProgressBar(
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
             }
         }
@@ -66,7 +74,8 @@ fun backgroundImage(modifier: Modifier = Modifier) {
     Image(
         painter = backgroundImage,
         contentDescription = "Splash screen background image.",
-        modifier = modifier
+        modifier = modifier,
+        contentScale = ContentScale.Crop
     )
 }
 
@@ -88,3 +97,12 @@ fun splashScreenLogo(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun splashScreenProgressBar(modifier: Modifier = Modifier) {
+    LinearProgressIndicator(
+        progress = 1.0f,
+        color = Color.White,
+        backgroundColor = Color.Transparent,
+        modifier = modifier.height(4.dp)
+    )
+}
