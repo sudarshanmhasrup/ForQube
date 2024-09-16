@@ -76,7 +76,7 @@ fun splashScreen(
 
 
 @Composable
-fun backgroundImage(modifier: Modifier = Modifier) {
+private fun backgroundImage(modifier: Modifier = Modifier) {
 
     val backgroundImage = painterResource("assets/splash-screen-background.png")
 
@@ -89,7 +89,7 @@ fun backgroundImage(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun splashScreenLogo(modifier: Modifier = Modifier) {
+private fun splashScreenLogo(modifier: Modifier = Modifier) {
 
     val splashScreenLogo = painterResource("assets/splash-screen-logo.svg")
 
@@ -107,7 +107,7 @@ fun splashScreenLogo(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun splashScreenProgressBar(
+private fun splashScreenProgressBar(
     modifier: Modifier = Modifier,
     onEnd: () -> Unit
 ) {
