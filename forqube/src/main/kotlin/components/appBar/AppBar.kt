@@ -3,16 +3,15 @@ package components.appBar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.pointerMoveFilter
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import theme.closeButtonHoverColor
@@ -58,6 +57,9 @@ private fun appBarOptions(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
     ) {
+        hideButtonWithIcon(
+            modifier = modifier.width(40.dp)
+        )
         closeButtonWithIcon(
             modifier = modifier.width(40.dp)
         )
@@ -104,6 +106,27 @@ private fun closeButtonWithIcon(modifier: Modifier = Modifier) {
             painter = icon,
             contentDescription = "Close window icon.",
             modifier = Modifier.height(8.dp)
+        )
+    }
+}
+
+@Composable
+private fun hideButtonWithIcon(modifier: Modifier = Modifier) {
+
+    Column (
+        modifier = modifier.clickable {
+
+        },
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Spacer(
+            modifier = Modifier.height(2.dp)
+                .width(10.dp)
+                .background(
+                    color = Color.Black,
+                    shape = RoundedCornerShape(100.dp)
+                )
         )
     }
 }
